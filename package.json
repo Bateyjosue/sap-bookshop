@@ -13,6 +13,13 @@
     "@cap-js/sqlite": "^1"
   },
   "scripts": {
-    "start": "cds run --port 4003"
+    "start": "cds run --port 4003",
+    "freeport": "sudo kill $(sudo lsof -t -i :4004)"
+  },
+  "cds": { "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": { "url": "db.sqlite" } 
   }
+}}
 }
