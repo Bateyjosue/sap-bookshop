@@ -1,0 +1,12 @@
+COLUMN TABLE sap_capire_bookshop_Genres (
+  name NVARCHAR(255),
+  descr NVARCHAR(1000),
+  ID INTEGER NOT NULL,
+  parent_ID INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_capire_bookshop_Genres AS parent ON (parent.ID = parent_ID),
+  MANY TO MANY JOIN sap_capire_bookshop_Genres AS children ON (children.parent_ID = ID),
+  MANY TO MANY JOIN sap_capire_bookshop_Genres_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN sap_capire_bookshop_Genres_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

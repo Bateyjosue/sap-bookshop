@@ -1,0 +1,41 @@
+{
+  "name": "sap-bookshop",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@sap/cds": "^7.9.0",
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "@sap/cds-hana": "^2"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
+  },
+  "scripts": {
+    "start": "cds w",
+    "freeport": "sudo kill $(sudo lsof -t -i :4004)",
+    "restart": "npm run freeport || npm run start"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        }
+      },
+      "CatService": {
+        "impl": "srv/cat-service.js"
+      },
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      }
+    }
+  }
+}

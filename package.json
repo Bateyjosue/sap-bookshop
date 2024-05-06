@@ -8,14 +8,18 @@
   "type": "module",
   "dependencies": {
     "@sap/cds": "^7.9.0",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "@sap/cds-hana": "^2"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
   },
   "scripts": {
-    "start": "cds run --port 4003",
-    "freeport": "sudo kill $(sudo lsof -t -i :4004)"
+    "start": "cds w",
+    "freeport": "sudo kill $(sudo lsof -t -i :4004)",
+    "restart": "npm run freeport || npm run start"
   },
   "cds": {
     "requires": {
@@ -27,6 +31,10 @@
       },
       "CatService": {
         "impl": "srv/cat-service.js"
+      },
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
       }
     }
   }

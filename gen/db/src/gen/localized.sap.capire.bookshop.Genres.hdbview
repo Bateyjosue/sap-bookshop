@@ -1,0 +1,12 @@
+VIEW localized_sap_capire_bookshop_Genres AS SELECT
+  coalesce(localized_1.name, L_0.name) AS name,
+  coalesce(localized_1.descr, L_0.descr) AS descr,
+  L_0.ID,
+  L_0.parent_ID
+FROM (sap_capire_bookshop_Genres AS L_0 LEFT JOIN sap_capire_bookshop_Genres_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = SESSION_CONTEXT('LOCALE'))
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_sap_capire_bookshop_Genres AS parent ON (parent.ID = parent_ID),
+  MANY TO MANY JOIN localized_sap_capire_bookshop_Genres AS children ON (children.parent_ID = ID),
+  MANY TO MANY JOIN sap_capire_bookshop_Genres_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN sap_capire_bookshop_Genres_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

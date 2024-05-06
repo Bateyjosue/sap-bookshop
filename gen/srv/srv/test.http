@@ -1,0 +1,56 @@
+### Submit Order
+POST http://localhost:4004/browse/submitOrder
+Content-Type: application/json
+Authorization: Basic alice:
+
+{
+  "book": 201,
+  "quantity": 2
+}
+
+###
+#
+# Browse Books
+#
+GET http://localhost:4004/odata/v4/admin/Books?
+  # &$select=title,stock
+  # &$expand=currency
+  # &sap-language=de
+
+###
+#
+# Get Author wit ID 101
+#
+GET http://localhost:4004/odata/v4/admin/Authors(101)
+
+###
+#
+# Update Author with ID 101
+#
+POST http://localhost:4004/odata/v4/admin/Authors
+Content-Type: application/json
+
+{"ID": 1001, "name": "Some Author"}
+
+
+###
+#
+# Order a Book
+#
+POST http://localhost:4004/browse/Orders
+Content-Type: application/json;IEEE754Compatible=true
+
+{"book_ID": 207, "amount": 0}
+
+
+###
+#
+# Browse a Orders
+#
+GET http://localhost:4004/browse/Orders
+Content-Type: application/json
+
+###
+#
+# Get Orders
+#

@@ -16,9 +16,9 @@ service CatalogeService @(path: '/browse') {
       modifiedBy
     };
 
-  @readonly
-  entity Genres as
-    select from my.Genres {
+  // @readonly
+  entity Orders as
+    select from my.Orders {
       *
     };
 
