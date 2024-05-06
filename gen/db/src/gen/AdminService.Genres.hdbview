@@ -1,0 +1,12 @@
+VIEW AdminService_Genres AS SELECT
+  Genres_0.name,
+  Genres_0.descr,
+  Genres_0.ID,
+  Genres_0.parent_ID
+FROM sap_capire_bookshop_Genres AS Genres_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN AdminService_Genres AS parent ON (parent.ID = parent_ID),
+  MANY TO MANY JOIN AdminService_Genres AS children ON (children.parent_ID = ID),
+  MANY TO MANY JOIN AdminService_Genres_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN AdminService_Genres_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

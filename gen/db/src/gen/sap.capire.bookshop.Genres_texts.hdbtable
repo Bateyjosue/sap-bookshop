@@ -1,0 +1,7 @@
+COLUMN TABLE sap_capire_bookshop_Genres_texts (
+  locale NVARCHAR(14) NOT NULL,
+  name NVARCHAR(255),
+  descr NVARCHAR(1000),
+  ID INTEGER NOT NULL,
+  PRIMARY KEY(locale, ID)
+)
